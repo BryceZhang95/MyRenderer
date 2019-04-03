@@ -11,3 +11,6 @@ Rasterization based graphic renderer
 - C++
 
 ### Demo
+![lalala](https://github.com/BryceZhang95/MyRenderer/blob/master/lab1.gif)
+
+![lala](https://github.com/BryceZhang95/MyRenderer/blob/master/lab2video.gif)
