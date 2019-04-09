@@ -81,79 +81,80 @@ void init()
     model[1].model_matrix = Transformation::translate(model[1].model_matrix, {0,-1.1,0});
     model[2].model_matrix = Transformation::translate(model[2].model_matrix, {0,5,0});
     //Matrix result_matrix = camera.projection_matrix * camera.view_matrix * model.model_matrix;
-//    for (int i=0; i<4; i++) {
-//        for (int j=0; j<4; j++) {
-//            cout<<result_matrix.matrix[i][j]<<", ";
-//        }
-//        cout<<endl;
-//    }
-//    cout<<endl<<endl;
-//
-//    for (int i=0; i<4; i++) {
-//        for (int j=0; j<4; j++) {
-//            cout<<camera.projection_matrix.matrix[i][j]<<", ";
-//        }
-//        cout<<endl;
-//    }
-//    cout<<endl<<endl;
-//
-//    for (int i=0; i<4; i++) {
-//        for (int j=0; j<4; j++) {
-//            cout<<camera.view_matrix.matrix[i][j]<<", ";
-//        }
-//        cout<<endl;
-//    }
-//    cout<<endl;
+    //    for (int i=0; i<4; i++) {
+    //        for (int j=0; j<4; j++) {
+    //            cout<<result_matrix.matrix[i][j]<<", ";
+    //        }
+    //        cout<<endl;
+    //    }
+    //    cout<<endl<<endl;
+    //
+    //    for (int i=0; i<4; i++) {
+    //        for (int j=0; j<4; j++) {
+    //            cout<<camera.projection_matrix.matrix[i][j]<<", ";
+    //        }
+    //        cout<<endl;
+    //    }
+    //    cout<<endl<<endl;
+    //
+    //    for (int i=0; i<4; i++) {
+    //        for (int j=0; j<4; j++) {
+    //            cout<<camera.view_matrix.matrix[i][j]<<", ";
+    //        }
+    //        cout<<endl;
+    //    }
+    //    cout<<endl;
 }
 void Draw()
 {
     // clear buffer
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-
+    
     //glEnable(GL_BLEND);
     //clean_buffer();
     // projection matrix
-//    glMatrixMode( GL_PROJECTION );
-//    glLoadIdentity();
-//
-//    // modelview matrix
-//    glMatrixMode( GL_MODELVIEW );
-//    glLoadIdentity();
-  
+    //    glMatrixMode( GL_PROJECTION );
+    //    glLoadIdentity();
+    //
+    //    // modelview matrix
+    //    glMatrixMode( GL_MODELVIEW );
+    //    glLoadIdentity();
+    
     // calculate the result of model, view and projection matrix
     Matrix result_matrix_0 = camera.projection_matrix * camera.view_matrix * model[0].model_matrix;
     Matrix result_matrix_1 = camera.projection_matrix * camera.view_matrix * model[1].model_matrix;
     Matrix result_matrix_2 = camera.projection_matrix * camera.view_matrix * model[2].model_matrix;
     model[0].backFaceRemove(result_matrix_0);
-    model[0].computeNormal();
-    model[0].drawGouraud(result_matrix_0, 1);
+    model[0].computeNormal(model[0].model_matrix);
+    //model[0].drawGouraud(result_matrix_0, 1);
     //model[0].drawPhong(result_matrix_0, 1);
-    //model[0].scanConversion(result_matrix_0,1);
+    model[0].scanConversion(result_matrix_0,1);
     
     model[1].backFaceRemove(result_matrix_1);
-    model[1].scanConversion(result_matrix_1,3);
-//    model[2].backFaceRemove(result_matrix_2);
-   model[2].scanConversion(result_matrix_2,2);
-//    for (int i=0; i<model[1].faces_number; i++) {
-//        printf("%d\n",model[1].faces[i].id);
-//    }
+    model[1].computeNormal(model[1].model_matrix);
+    model[1].drawPhong(result_matrix_1,3);
+    //    model[2].backFaceRemove(result_matrix_2);
+    model[2].scanConversion(result_matrix_2,2);
+    //    for (int i=0; i<model[1].faces_number; i++) {
+    //        printf("%d\n",model[1].faces[i].id);
+    //    }
     //DrawImage();
-//    for (int i=0; i<800; i++) {
-//        for (int j=0; j<800; j++) {
-//            printf(">%f %f %f\n",framebuffer[i][j][0],framebuffer[i][j][1],framebuffer[i][j][2]);
-//        }
-//    }
+    //    for (int i=0; i<800; i++) {
+    //        for (int j=0; j<800; j++) {
+    //            printf(">%f %f %f\n",framebuffer[i][j][0],framebuffer[i][j][1],framebuffer[i][j][2]);
+    //        }
+    //    }
     // draw pictures
     glDrawPixels(PIXELX,PIXELY,GL_RGB,GL_FLOAT,framebuffer);
-
-
+    
+    
     // flush
     glFlush();
     
     // swap buffers
     glutSwapBuffers();
-
+    
 }
 
 
@@ -165,11 +166,11 @@ void update( void ) {
     model[0].model_matrix = Transformation::rotate(model[0].model_matrix, 0.3, {0.0,1.0,0.0});
     model[1].model_matrix = Transformation::rotate(model[1].model_matrix, 0.3, {0.0,1.0,0.0});
     //model[2].model_matrix = Transformation::rotate(model[2].model_matrix, 0.3,{0,0,1});
-//    model[2].model_matrix = Transformation::translate(model[2].model_matrix, {0,-0.15,0});
+    //    model[2].model_matrix = Transformation::translate(model[2].model_matrix, {0,-0.15,0});
     
-//    model[1].model_matrix = Transformation::translate(model[1].model_matrix, {0,-0.15,0});
+    //    model[1].model_matrix = Transformation::translate(model[1].model_matrix, {0,-0.15,0});
     //model[1].model_matrix = Transformation::rotate(model[1].model_matrix, 0.5, {1.0,0.0,0.0});
-//     model[1].model_matrix = Transformation::translate(model[1].model_matrix, {0,0.8,0});
+    //     model[1].model_matrix = Transformation::translate(model[1].model_matrix, {0,0.8,0});
     // make sure the frame buffer has been cleared before drawing
     initFrameBuffer();
     Draw();
@@ -182,7 +183,7 @@ void timer( int value ) {
     g_frameIndex++;
     
     update();
-
+    
     // render
     glutPostRedisplay();
     
@@ -206,8 +207,8 @@ int main(int argc, char * argv[]) {
     glutMainLoop();
     
     //close();
-
-   
+    
+    
     
     
     return 0;

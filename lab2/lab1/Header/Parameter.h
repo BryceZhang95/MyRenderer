@@ -17,7 +17,7 @@
 Vector3 globalColor[COLOR_NUM]={Vector3(1.0, 0.0, 1.0), Vector3(1.0, 1.0, 0.0)};
 Vector3 globalcolor(1.0,0.0,1.0);
 Vector3 camera_position{0.0, 6.0, 25.0};
-Vector3 light_position{0,6,-10};
+Vector3 light_position{0,10,10};
 float Zbuffer[PIXELX][PIXELY];
 Vector3 Ibuffer[PIXELX][PIXELY];
 float xValue[PIXELX];
