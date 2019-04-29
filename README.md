@@ -16,3 +16,5 @@ Rasterization based graphic renderer
 ![lala](https://github.com/BryceZhang95/MyRenderer/blob/master/lab2video.gif)
 
 ![lala](https://github.com/BryceZhang95/MyRenderer/blob/master/lab_3.gif)
+
+![lala](https://github.com/BryceZhang95/MyRenderer/blob/master/lab4.gif)
